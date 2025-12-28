@@ -17,7 +17,7 @@ http://localhost:3000/users
 
 **Password dikirim dalam bentuk biasa (plain text)**, akan otomatis di-hash oleh backend.
 
----
+
 
 ## Endpoint
 
@@ -29,7 +29,7 @@ http://localhost:3000/users
 | PUT    | /users/:id | Mengubah data user            | Tidak     |
 | DELETE | /users/:id | Menghapus user                | Tidak     |
 
----
+
 
 ### 1. POST /users (Create User)
 
@@ -80,7 +80,6 @@ Membuat user baru. Password dikirim plain text, akan otomatis di-hash.
 }
 ```
 
----
 
 Endpoint lain (GET, PUT, DELETE) bisa dipanggil sesuai tabel di atas.
 
@@ -97,11 +96,6 @@ Contoh JSON **tidak disertakan**, tapi response format sama seperti POST:
 }
 ```
 
----
-
----
-
-
 # Auth API
 
 API untuk **login user** dan mendapatkan **JWT token**.
@@ -113,15 +107,12 @@ Backend menggunakan **Node.js**, **Express.js**, **MySQL**, **bcrypt**, dan **js
 http://localhost:3000/login
 ```
 
----
-
 ## Endpoint
 
 | Method | Endpoint | Deskripsi                   | Auth/Role |
 | ------ | -------- | --------------------------- | --------- |
 | POST   | /login   | Login user dan dapatkan JWT | Tidak     |
 
----
 
 ### 1. POST /login
 
@@ -172,13 +163,6 @@ Jika berhasil, akan mengembalikan **JWT token** yang bisa digunakan untuk mengak
 }
 ```
 
----
-
-
-Oke! Saya revisi README **Event API** agar lebih jelas mengenai **auth & role**.
-Sekarang semua endpoint yang membutuhkan **auth + role organizer** dicatat, dan GET tetap bisa diakses tanpa login.
-
----
 
 # Events API
 
@@ -192,8 +176,6 @@ API untuk mengelola **events** (CRUD).
 ```
 http://localhost:3000/events
 ```
-
----
 
 ## Endpoint
 
@@ -267,8 +249,6 @@ Authorization: Bearer <token>
 }
 ```
 
----
-
 Endpoint lain (GET, PUT, DELETE) bisa dipanggil sesuai tabel di atas.
 
 * GET → tanpa auth, response berisi data event.
@@ -293,7 +273,6 @@ API untuk mengelola **bookings** (pemesanan tiket event).
 http://localhost:3000/bookings
 ```
 
----
 
 ## Endpoint
 
@@ -305,7 +284,6 @@ http://localhost:3000/bookings
 
 > **Note:** Untuk POST dan PUT cancel, harus menyertakan **header Authorization** dengan **JWT token** yang didapat dari login.
 
----
 
 ### 1. POST /bookings (Create Booking)
 
@@ -361,7 +339,7 @@ Authorization: Bearer <token>
 
 ```json
 {
-  "message": "Unauthorized"
+  "message": "hanya customer yang bisa memesan tiket!"
 }
 ```
 
@@ -373,9 +351,6 @@ Authorization: Bearer <token>
   "error": "Error message"
 }
 ```
-
----
-
 ### 2. GET /bookings
 
 **Deskripsi:**
@@ -396,8 +371,6 @@ Mengambil semua booking. Bisa diakses publik.
   }
 ]
 ```
-
----
 
 ### 3. PUT /bookings/:id/cancel (Cancel Booking)
 
